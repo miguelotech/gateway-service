@@ -6,3 +6,32 @@ spring:
     name: gateway-service
   config:
     import: optional:configserver:http://root:s3cr3t@ms-config-server:8888
+  security:
+    oauth2:
+      client:
+        registration:
+          gateway-client:
+            provider: oauth-service
+            client-id: gateway-client
+            client-secret: secret
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope:
+              - openid
+              - profile
+              - products.read
+              - products.write
+        provider:
+          oauth-service:
+            issuer-uri: http://localhost:9050
+  cloud:
+    gateway:
+      server:
+        webflux:
+          default-filters:
+            - TokenRelay
+          routes:
+            - id: ms-product
+              uri: http://localhost:8081
+              predicates:
+                - Path=/api/products/**

@@ -20,4 +20,5 @@ COPY --from=builder /app/build/libs/gateway-service-1.0.jar /gateway-service.jar
 EXPOSE 8000
 
 # Ejecuta el jar
+
 ENTRYPOINT ["java", "-jar", "/gateway-service.jar"]

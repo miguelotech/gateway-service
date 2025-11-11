@@ -22,4 +22,15 @@ public class SecurityConfig {
                 .oauth2Client(Customizer.withDefaults())
                 .build();
     }
+
+//    @Bean
+//    public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
+//        return http
+//                .csrf(ServerHttpSecurity.CsrfSpec::disable)
+//                .authorizeExchange(exchange -> exchange
+//                        .pathMatchers("/actuator/**").permitAll()
+//                        .anyExchange().permitAll())
+//                .build();
+//    }
+
 }
