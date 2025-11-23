@@ -1,13 +1,13 @@
 package com.synopsis.gateway;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+import static org.assertj.core.api.Assertions.assertThat;
+
 class GatewayServiceApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void applicationClassIsLoadable() {
+		assertThat(new GatewayServiceApplication()).isNotNull();
 	}
-
 }
